@@ -12,39 +12,80 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white: #f0ede8;
-      --off-white: #c8c4bc;
-      --mid: #6b6660;
-      --dark: #111010;
-      --black: #080807;
-      --red: #8b1a1a;
-      --glass: rgba(240, 237, 232, 0.04);
-      --glass-border: rgba(240, 237, 232, 0.08);
+      --bg-light: #f5f5f5;      /* Main light gray matching Stud office logo 3.png */
+      --bg-white: #ffffff;      /* Contrast stark white */
+      --text-dark: #111111;     /* Primary deep black shade */
+      --text-muted: #555555;    /* Mid-tone gray for metadata */
+      --accent-black: #000000;  /* Pure black for high emphasis */
+      --glass-light: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --hero-text: #ffffff;     /* White text override for the dark greeting GIF */
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
-      color: var(--white);
+      background: var(--bg-light);
+      color: var(--text-dark);
       font-family: 'Cormorant Garamond', Georgia, serif;
       overflow-x: hidden;
       cursor: default;
     }
 
-    /* Grain overlay */
+    /* Subtle grain/artifact overlay matching the logo style */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.35;
-      mix-blend-mode: overlay;
+      mix-blend-mode: multiply;
     }
 
-    /* ─── HERO ─── */
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 6vw;
+      background: var(--glass-light);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--accent-black); }
+
+    /* ─── HERO (GREETED WITH GIF) ─── */
     .hero {
       position: relative;
       height: 100vh;
@@ -58,33 +99,26 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('screenshot-2.png');
+      background-image: url('website gif.gif');
       background-size: cover;
-      background-position: center 30%;
-      filter: grayscale(100%) contrast(1.1) brightness(0.45);
-      transform: scale(1.05);
-      animation: subtle-drift 20s ease-in-out infinite alternate;
-    }
-
-    @keyframes subtle-drift {
-      from { transform: scale(1.05) translateX(0); }
-      to   { transform: scale(1.08) translateX(-1%); }
+      background-position: center;
+      transform: scale(1.02);
     }
 
     .hero-vignette {
       position: absolute;
       inset: 0;
       background: 
-        radial-gradient(ellipse at center, transparent 30%, rgba(8,8,7,0.7) 100%),
-        linear-gradient(to top, var(--black) 0%, transparent 50%),
-        linear-gradient(to bottom, rgba(8,8,7,0.4) 0%, transparent 30%);
+        radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.6) 100%),
+        linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      padding: 0 6vw 8vh;
+      padding: 0 6vw 10vh;
       max-width: 900px;
+      color: var(--hero-text);
     }
 
     .hero-eyebrow {
@@ -92,7 +126,7 @@
       font-size: 0.7rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: #aaaaaa;
       margin-bottom: 1.2rem;
       opacity: 0;
       animation: fade-up 1s ease forwards 0.3s;
@@ -103,7 +137,7 @@
       font-size: clamp(4rem, 12vw, 10rem);
       line-height: 0.9;
       letter-spacing: 0.02em;
-      color: var(--white);
+      color: var(--hero-text);
       opacity: 0;
       animation: fade-up 1s ease forwards 0.6s;
     }
@@ -115,7 +149,7 @@
       font-weight: 300;
       font-size: clamp(1.2rem, 3vw, 2rem);
       letter-spacing: 0.15em;
-      color: var(--off-white);
+      color: #dddddd;
       margin-top: 0.4rem;
     }
 
@@ -133,17 +167,17 @@
       font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--mid);
-      border: 1px solid var(--glass-border);
+      color: var(--hero-text);
+      border: 1px solid rgba(255,255,255,0.2);
       padding: 0.5rem 1rem;
-      background: var(--glass);
+      background: rgba(255,255,255,0.1);
       backdrop-filter: blur(8px);
     }
 
     .hero-line {
       width: 60px;
       height: 1px;
-      background: linear-gradient(to right, var(--mid), transparent);
+      background: linear-gradient(to right, rgba(255,255,255,0.4), transparent);
     }
 
     @keyframes fade-up {
@@ -151,61 +185,22 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── NAV ─── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem 6vw;
-      background: linear-gradient(to bottom, rgba(8,8,7,0.8), transparent);
-      backdrop-filter: blur(0px);
-    }
-
-    .nav-logo {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--off-white);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--mid);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover { color: var(--white); }
-
     /* ─── SECTION BASE ─── */
     section {
-      padding: 10vh 6vw;
+      padding: 12vh 6vw;
     }
 
     .section-label {
       font-family: 'Courier Prime', monospace;
-      font-size: 0.62rem;
+      font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--red);
+      color: var(--accent-black);
       margin-bottom: 3rem;
       display: flex;
       align-items: center;
       gap: 1rem;
+      font-weight: bold;
     }
 
     .section-label::after {
@@ -213,19 +208,18 @@
       display: block;
       width: 40px;
       height: 1px;
-      background: var(--red);
-      opacity: 0.5;
+      background: var(--accent-black);
     }
 
-    /* ─── ABOUT ─── */
+    /* ─── ABOUT (THE GAME) ─── */
     #about {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8vw;
+      gap: 6vw;
       align-items: start;
-      padding: 14vh 6vw;
+      padding: 16vh 6vw;
     }
 
     .about-left h2 {
@@ -233,13 +227,21 @@
       font-weight: 300;
       font-size: clamp(2.5rem, 5vw, 4.5rem);
       line-height: 1.1;
-      color: var(--white);
+      color: var(--text-dark);
       margin-bottom: 2.5rem;
     }
 
     .about-left h2 em {
       font-style: italic;
-      color: var(--off-white);
+      color: var(--text-muted);
+    }
+
+    .logo-display {
+      width: 100%;
+      max-width: 320px;
+      margin-top: 2rem;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
     .about-right {
@@ -247,17 +249,17 @@
     }
 
     .about-right p {
-      font-size: clamp(1rem, 1.4vw, 1.2rem);
-      font-weight: 300;
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      font-weight: 400;
       line-height: 1.9;
-      color: var(--off-white);
+      color: var(--text-dark);
       margin-bottom: 1.5rem;
     }
 
     .about-right p + p {
-      color: var(--mid);
+      color: var(--text-muted);
       font-style: italic;
-      font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
     }
 
     .about-divider {
@@ -281,7 +283,7 @@
     .stat-value {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 2.5rem;
-      color: var(--white);
+      color: var(--accent-black);
       letter-spacing: 0.05em;
     }
 
@@ -290,12 +292,14 @@
       font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: var(--text-muted);
     }
 
     /* ─── SCREENSHOTS ─── */
     #screenshots {
-      background: var(--dark);
+      background: var(--bg-white);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
       padding: 12vh 6vw;
     }
 
@@ -310,13 +314,13 @@
       display: grid;
       grid-template-columns: 1.6fr 1fr;
       grid-template-rows: auto auto;
-      gap: 3px;
+      gap: 12px;
     }
 
     .screenshot-item {
       position: relative;
       overflow: hidden;
-      cursor: pointer;
+      border: 1px solid var(--glass-border);
     }
 
     .screenshot-item:first-child {
@@ -328,8 +332,8 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: grayscale(100%) contrast(1.05) brightness(0.85);
-      transition: filter 0.6s ease, transform 0.8s ease;
+      filter: grayscale(100%) contrast(1.1) brightness(0.95);
+      transition: filter 0.5s ease, transform 0.7s ease;
       aspect-ratio: 16/9;
     }
 
@@ -340,27 +344,20 @@
     }
 
     .screenshot-item:hover img {
-      filter: grayscale(60%) contrast(1.1) brightness(0.95);
-      transform: scale(1.03);
+      filter: grayscale(20%) contrast(1.05) brightness(1);
+      transform: scale(1.02);
     }
 
     .screenshot-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(8,8,7,0.6), transparent 50%);
+      background: linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 40%);
       pointer-events: none;
     }
 
-    .screenshot-gloss {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(240,237,232,0.06) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    /* ─── CONTACT / FOOTER ─── */
+    /* ─── CONTACT ─── */
     #contact {
-      padding: 14vh 6vw 8vh;
+      padding: 16vh 6vw 12vh;
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
@@ -374,16 +371,16 @@
       font-weight: 300;
       font-size: clamp(2rem, 4vw, 3.5rem);
       line-height: 1.1;
-      color: var(--white);
+      color: var(--text-dark);
       margin-bottom: 1.5rem;
     }
 
     .contact-left p {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 300;
-      color: var(--mid);
+      color: var(--text-muted);
       line-height: 1.8;
-      max-width: 380px;
+      max-width: 400px;
     }
 
     .contact-right {
@@ -395,35 +392,37 @@
 
     .contact-email {
       font-family: 'Courier Prime', monospace;
-      font-size: clamp(0.8rem, 1.5vw, 1rem);
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
       letter-spacing: 0.1em;
-      color: var(--white);
+      color: var(--text-dark);
       text-decoration: none;
-      border-bottom: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--text-dark);
       padding-bottom: 0.5rem;
-      transition: border-color 0.3s, color 0.3s;
+      transition: color 0.3s, border-color 0.3s;
       display: flex;
       align-items: center;
       gap: 1rem;
+      font-weight: bold;
     }
 
     .contact-email::before {
       content: '→';
-      color: var(--mid);
-      transition: transform 0.3s, color 0.3s;
+      color: var(--text-muted);
+      transition: transform 0.3s;
     }
 
     .contact-email:hover {
-      color: var(--off-white);
-      border-color: var(--off-white);
+      color: var(--text-muted);
+      border-color: var(--text-muted);
     }
 
     .contact-email:hover::before {
-      transform: translateX(4px);
-      color: var(--white);
+      transform: translateX(6px);
     }
 
+    /* ─── FOOTER ─── */
     footer {
+      background: var(--bg-white);
       border-top: 1px solid var(--glass-border);
       padding: 2.5rem 6vw;
       display: flex;
@@ -431,27 +430,19 @@
       align-items: center;
     }
 
-    .footer-copy {
+    .footer-copy, .footer-platform {
       font-family: 'Courier Prime', monospace;
-      font-size: 0.6rem;
+      font-size: 0.65rem;
       letter-spacing: 0.2em;
-      color: var(--mid);
-      text-transform: uppercase;
-    }
-
-    .footer-platform {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--mid);
+      color: var(--text-muted);
       text-transform: uppercase;
     }
 
     /* ─── SCROLL REVEAL ─── */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
     .reveal.visible {
@@ -464,11 +455,16 @@
       #about {
         grid-template-columns: 1fr;
         gap: 3rem;
-        padding: 10vh 6vw;
+        padding: 12vh 6vw;
+      }
+
+      .logo-display {
+        margin: 2rem auto 0;
       }
 
       .screenshots-grid {
         grid-template-columns: 1fr;
+        gap: 8px;
       }
 
       .screenshot-item:first-child {
@@ -481,27 +477,22 @@
       }
 
       .contact-right { align-items: flex-start; }
-
       .nav-links { display: none; }
-
-      .about-stats { gap: 2rem; }
-
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
 
     /* ─── CUSTOM SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--mid); }
-    ::-webkit-scrollbar-thumb:hover { background: var(--off-white); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-light); }
+    ::-webkit-scrollbar-thumb { background: #cccccc; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-    /* ─── SELECTION ─── */
-    ::selection { background: var(--white); color: var(--black); }
+    ::selection { background: var(--text-dark); color: var(--bg-white); }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- NAVIGATION -->
   <nav>
     <a href="#" class="nav-logo">Stud Office</a>
     <ul class="nav-links">
@@ -511,7 +502,7 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- GREETING HERO (website gif.gif) -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-vignette"></div>
@@ -522,19 +513,23 @@
         <span>Aurelian's Retrieval</span>
       </h1>
       <div class="hero-meta">
-        <span class="hero-badge">Coming late 2026</span>
+        <span class="hero-badge">Coming 2026</span>
         <span class="hero-badge">Roblox</span>
         <div class="hero-line"></div>
-        <span style="font-family:'Courier Prime',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--mid);">Horror / Exploration</span>
+        <span style="font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.15em;color:#cccccc;">Horror / Exploration</span>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- GAME INFO SECTION -->
   <section id="about">
     <div class="about-left reveal">
       <div class="section-label">The Game</div>
       <h2>Something was<br /><em>left behind.</em></h2>
+      
+      <!-- Studio Branding Feature -->
+      <img src="Stud office logo 3.png" alt="Stud Office Brand Logo" class="logo-display" />
+
       <div class="about-divider"></div>
       <div class="about-stats">
         <div class="stat-item">
@@ -551,12 +546,9 @@
         </div>
       </div>
     </div>
-    <div class="about-right reveal" style="transition-delay:0.2s">
+    <div class="about-right reveal" style="transition-delay:0.15s">
       <p>
-        Intelligence suggests Vitae Biolabs has repurposed the now abandoned Aurelian Private Hospital situated somewhere in central Romania, they're working to develop
-the first sample of a deadly bioweapon called sample Alpha, your goal is to retrieve the bioweapon.
-
-In the IIA series you get to experience psychological horror, the series are less dependant on cliché jumpscares and other similar elements and actually try to stress you out, your main method of communication when playing in multiplayer with up to four people is a ping wheel with basic commands, you are encouraged to explore and find out more about the lore.
+        You wake up inside the Aurelian Institute — a sealed facility with no memory of how you got there. The lights are out. Something moves in the corridors above you.
       </p>
       <p>
         A horror and exploration game built on Roblox. Every room hides something. Not everything that waits for you wants to be found.
@@ -564,38 +556,35 @@ In the IIA series you get to experience psychological horror, the series are les
     </div>
   </section>
 
-  <!-- SCREENSHOTS -->
+  <!-- SCREENSHOTS SHOWCASE -->
   <section id="screenshots">
     <div class="screenshots-header reveal">
-      <div class="section-label">Screenshots</div>
+      <div class="section-label">Gallery Archive</div>
     </div>
     <div class="screenshots-grid">
       <div class="screenshot-item reveal">
         <img src="screenshot-1.png" alt="Rooftop helipad" loading="lazy" />
         <div class="screenshot-overlay"></div>
-        <div class="screenshot-gloss"></div>
       </div>
-      <div class="screenshot-item reveal" style="transition-delay:0.15s">
+      <div class="screenshot-item reveal" style="transition-delay:0.1s">
         <img src="screenshot-3.png" alt="Hospital entrance" loading="lazy" />
         <div class="screenshot-overlay"></div>
-        <div class="screenshot-gloss"></div>
       </div>
-      <div class="screenshot-item reveal" style="transition-delay:0.3s">
+      <div class="screenshot-item reveal" style="transition-delay:0.2s">
         <img src="screenshot-2.png" alt="Building exterior" loading="lazy" />
         <div class="screenshot-overlay"></div>
-        <div class="screenshot-gloss"></div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT / ENQUIRIES -->
   <section id="contact">
     <div class="contact-left reveal">
       <div class="section-label">Get in Touch</div>
       <h3>Questions,<br />press, or partnerships.</h3>
-      <p>Stud Office is an independent game development studio owned by NarekiDev Reach out for any inquiries about IIA.</p>
+      <p>Stud Office is an independent game development studio. Reach out for any inquiries about IIA or our upcoming projects.</p>
     </div>
-    <div class="contact-right reveal" style="transition-delay:0.2s">
+    <div class="contact-right reveal" style="transition-delay:0.15s">
       <a href="mailto:contact@studoffice.com" class="contact-email">contact@studoffice.com</a>
     </div>
   </section>
@@ -603,11 +592,11 @@ In the IIA series you get to experience psychological horror, the series are les
   <!-- FOOTER -->
   <footer>
     <span class="footer-copy">© 2026 Stud Office — All rights reserved</span>
-    <span class="footer-platform">Powered by Roblox Studio</span>
+    <span class="footer-platform">Built on Roblox</span>
   </footer>
 
   <script>
-    // Scroll reveal
+    // Smooth reveal animations on scroll
     const revealEls = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -616,7 +605,7 @@ In the IIA series you get to experience psychological horror, the series are les
           observer.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     revealEls.forEach(el => observer.observe(el));
   </script>
