@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StudOffice</title>
   
-  <!-- BROWSER TAB ICON (FAVICON) -->
   <link rel="icon" type="image/png" href="Stud office logo 3.png" />
   
   <meta name="description" content="Independent interactive development studio." />
@@ -47,7 +46,7 @@
       background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
       background-size: 100% 4px, 6px 100%;
       pointer-events: none;
-      z-index: 10; /* Lowered below nav links to stop blocking mobile views */
+      z-index: 10; 
       opacity: 0.18;
     }
 
@@ -99,7 +98,7 @@
       min-height: 600px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end; /* Keeps alignment grounded beautifully */
+      justify-content: flex-end; 
       overflow: hidden;
       background: #000;
     }
@@ -127,7 +126,7 @@
     .hero-content {
       position: relative;
       z-index: 3;
-      padding: 0 6vw 6vh; /* Decreased bottom padding to draw text down from the middle screen */
+      padding: 0 6vw 6vh; 
       max-width: 1000px;
       width: 100%;
     }
@@ -135,11 +134,11 @@
     .hero-title {
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
-      font-size: clamp(3.2rem, 11vw, 9.5rem); /* Lowered mobile baseline font slightly to prevent layout breaking */
+      font-size: clamp(3.2rem, 10vw, 8.5rem); /* Scaled down max size slightly for absolute safety */
       line-height: 0.85;
       letter-spacing: -0.03em;
       text-transform: none;
-      word-wrap: break-word;
+      white-space: nowrap; /* CRITICAL FIX: Stops StudOffice from breaking onto two lines */
     }
 
     /* ─── OVERVIEW SECTION ─── */
@@ -376,7 +375,7 @@
     @media (max-width: 900px) {
       nav {
         padding: 1.2rem 6vw;
-        background: rgba(5, 5, 5, 0.85); /* Ensures visibility context over changing hero assets */
+        background: rgba(5, 5, 5, 0.85); 
       }
       .about-grid, .project-grid, .contact-grid {
         grid-template-columns: 1fr;
@@ -389,16 +388,18 @@
       .contact-link-wrapper {
         align-items: flex-start;
       }
-      /* Instead of hiding entirely, we keep the logo visible and drop nav items smoothly */
       .nav-links { display: none; } 
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
       .branding-divider-block { padding: 8vh 0; }
       
       .hero {
-        min-height: -webkit-fill-available; /* Safe-zone handling for mobile browser header wrappers */
+        min-height: -webkit-fill-available; 
       }
       .hero-content {
-        padding: 0 6vw 8vh; /* Keeps text firmly out of screen center fields on portrait viewports */
+        padding: 0 6vw 8vh; 
+      }
+      .hero-title {
+        white-space: normal; /* Allows natural wrapping on tiny mobile screens if needed */
       }
     }
 
@@ -410,7 +411,6 @@
 </head>
 <body>
 
-  <!-- MINIMAL TRANSPARENT NAVIGATION -->
   <nav>
     <a href="#" class="nav-logo">StudOffice</a>
     <ul class="nav-links">
@@ -420,7 +420,6 @@
     </ul>
   </nav>
 
-  <!-- PURE HERO VIDEO ENTRY -->
   <section class="hero">
     <video autoplay loop muted playsinline class="hero-video">
       <source src="website%20gif.mp4" type="video/mp4">
@@ -431,7 +430,6 @@
     </div>
   </section>
 
-  <!-- ABOUT / OVERVIEW -->
   <section id="about">
     <div class="section-header reveal-trigger">Overview</div>
     
@@ -447,17 +445,14 @@
     </div>
   </section>
 
-  <!-- BLENDED DIVISION BANNER -->
   <div class="branding-divider-block">
     <img src="Stud office logo 3.png" alt="StudOffice Insignia" class="centered-logo" />
   </div>
 
-  <!-- CURRENT PROJECT SHOWCASE -->
   <section id="current-project">
     <div class="section-header reveal-trigger">Current Project</div>
     <div class="project-grid">
       
-      <!-- STACKED PORTFOLIO ARCHIVE -->
       <div class="project-showcase-gallery reveal-trigger">
         <div class="gallery-frame">
           <img src="screenshot-2.png" alt="Primary structural view" loading="lazy" />
@@ -470,7 +465,6 @@
         </div>
       </div>
 
-      <!-- STICKY PROJECT NARRATIVE -->
       <div class="project-details reveal-trigger" style="transition-delay: 0.1s;">
         <h3>IIA: Aurelian's Retrieval</h3>
         <span class="meta-tag">In Active Production // Releasing mid-late 2026</span>
@@ -482,7 +476,6 @@
     </div>
   </section>
 
-  <!-- COMMUNICATIONS / NETWORK LINKS -->
   <section id="contact">
     <div class="section-header reveal-trigger">Communications</div>
     
@@ -502,12 +495,10 @@
     </div>
   </section>
 
-  <!-- CONFIDENT CLEAN FOOTER -->
   <footer>
     <span class="footer-string">© 2026 StudOffice — All rights reserved</span>
   </footer>
 
-  <!-- SCRIPT ENGINE -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const video = document.querySelector('.hero-video');
