@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IIA: Aurelian's Retrieval — Stud Office</title>
-  <meta name="description" content="A horror exploration game. Coming 2026." />
+  <title>Stud Office — Interactive Media & Design</title>
+  <meta name="description" content="Independent interactive development studio specializing in immersive atmospheres." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet" />
@@ -12,38 +12,35 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg-light: #f5f5f5;      /* Main light gray matching Stud office logo 3.png */
-      --bg-white: #ffffff;      /* Contrast stark white */
-      --text-dark: #111111;     /* Primary deep black shade */
-      --text-muted: #555555;    /* Mid-tone gray for metadata */
-      --accent-black: #000000;  /* Pure black for high emphasis */
-      --glass-light: rgba(255, 255, 255, 0.85);
-      --glass-border: rgba(0, 0, 0, 0.08);
-      --hero-text: #ffffff;     /* White text override for the dark greeting GIF */
+      --bg-base: #f3f3f3;       /* Studio light gray matching logo background */
+      --bg-stark: #ffffff;      /* Contrast white */
+      --text-main: #0a0a0a;     /* Deep off-black */
+      --text-muted: #666666;    /* Secondary architectural gray */
+      --border-clean: rgba(0, 0, 0, 0.07);
+      --glass-nav: rgba(243, 243, 243, 0.8);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg-light);
-      color: var(--text-dark);
+      background: var(--bg-base);
+      color: var(--text-main);
       font-family: 'Cormorant Garamond', Georgia, serif;
       overflow-x: hidden;
       cursor: default;
     }
 
-    /* Subtle grain/artifact overlay matching the logo style */
+    /* Performant vector grain layer overlay */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 9999;
-      mix-blend-mode: multiply;
     }
 
-    /* ─── NAV ─── */
+    /* ─── NAVIGATION ─── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -51,95 +48,102 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 6vw;
-      background: var(--glass-light);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--glass-border);
+      padding: 1.8rem 6vw;
+      background: var(--glass-nav);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-clean);
+      will-change: transform;
     }
 
     .nav-logo {
       font-family: 'Courier Prime', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--text-dark);
+      color: var(--text-main);
       text-decoration: none;
       font-weight: bold;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      gap: 3rem;
       list-style: none;
     }
 
     .nav-links a {
       font-family: 'Courier Prime', monospace;
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-muted);
       text-decoration: none;
-      transition: color 0.3s;
+      transition: color 0.25s ease;
     }
 
-    .nav-links a:hover { color: var(--accent-black); }
+    .nav-links a:hover { color: var(--text-main); }
 
-    /* ─── HERO (GREETED WITH GIF) ─── */
+    /* ─── STUDIO GREETING HERO ─── */
     .hero {
       position: relative;
       height: 100vh;
-      min-height: 600px;
+      min-height: 650px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       overflow: hidden;
+      background: #000;
     }
 
-    .hero-bg {
+    /* HTML5 background video optimization handles lag gracefully */
+    .hero-video {
       position: absolute;
-      inset: 0;
-      background-image: url('website gif.gif');
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.02);
+      top: 50%; left: 50%;
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0.85;
     }
 
     .hero-vignette {
       position: absolute;
       inset: 0;
+      z-index: 2;
       background: 
-        radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.6) 100%),
-        linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
+        radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.5) 100%),
+        linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
     }
 
     .hero-content {
       position: relative;
-      z-index: 2;
-      padding: 0 6vw 10vh;
-      max-width: 900px;
-      color: var(--hero-text);
+      z-index: 3;
+      padding: 0 6vw 12vh;
+      max-width: 1100px;
+      color: #ffffff;
     }
 
     .hero-eyebrow {
       font-family: 'Courier Prime', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: #aaaaaa;
-      margin-bottom: 1.2rem;
+      color: #b0b0b0;
+      margin-bottom: 1rem;
       opacity: 0;
-      animation: fade-up 1s ease forwards 0.3s;
+      animation: fade-up-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
     }
 
     .hero-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 12vw, 10rem);
-      line-height: 0.9;
-      letter-spacing: 0.02em;
-      color: var(--hero-text);
+      font-size: clamp(4.5rem, 11vw, 9.5rem);
+      line-height: 0.85;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
       opacity: 0;
-      animation: fade-up 1s ease forwards 0.6s;
+      animation: fade-up-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
     }
 
     .hero-title span {
@@ -147,467 +151,385 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-weight: 300;
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      letter-spacing: 0.15em;
-      color: #dddddd;
-      margin-top: 0.4rem;
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      letter-spacing: 0.1em;
+      color: #e0e0e0;
+      text-transform: none;
+      margin-top: 0.6rem;
     }
 
-    .hero-meta {
+    .hero-footer-meta {
       display: flex;
       align-items: center;
       gap: 2rem;
-      margin-top: 2.5rem;
+      margin-top: 3.5rem;
       opacity: 0;
-      animation: fade-up 1s ease forwards 0.9s;
+      animation: fade-up-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s;
     }
 
-    .hero-badge {
+    .hero-indicator {
       font-family: 'Courier Prime', monospace;
       font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--hero-text);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 0.5rem 1rem;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(8px);
+      color: #999999;
+      border-left: 2px solid #ffffff;
+      padding-left: 1rem;
     }
 
-    .hero-line {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(to right, rgba(255,255,255,0.4), transparent);
-    }
-
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(20px); }
+    @keyframes fade-up-reveal {
+      from { opacity: 0; transform: translateY(30px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── SECTION BASE ─── */
+    /* ─── GENERAL ARCHITECTURE ─── */
     section {
-      padding: 12vh 6vw;
+      padding: 14vh 6vw;
+      position: relative;
     }
 
-    .section-label {
+    .section-header {
       font-family: 'Courier Prime', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--accent-black);
-      margin-bottom: 3rem;
+      color: var(--text-main);
+      margin-bottom: 4rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
       font-weight: bold;
     }
 
-    .section-label::after {
+    .section-header::after {
       content: '';
-      display: block;
-      width: 40px;
+      width: 50px;
       height: 1px;
-      background: var(--accent-black);
+      background: var(--text-main);
     }
 
-    /* ─── ABOUT (THE GAME) ─── */
+    /* ─── STUDIO PROFILE / ABOUT ─── */
     #about {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6vw;
-      align-items: start;
-      padding: 16vh 6vw;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 8vw;
     }
 
-    .about-left h2 {
+    .studio-headline h2 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      line-height: 1.1;
-      color: var(--text-dark);
-      margin-bottom: 2.5rem;
+      font-size: clamp(2.5rem, 4.5vw, 4rem);
+      line-height: 1.15;
+      color: var(--text-main);
     }
 
-    .about-left h2 em {
+    .studio-headline h2 em {
       font-style: italic;
       color: var(--text-muted);
     }
 
-    .logo-display {
-      width: 100%;
-      max-width: 320px;
-      margin-top: 2rem;
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    .studio-description p {
+      font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+      line-height: 1.85;
+      color: var(--text-main);
+      margin-bottom: 2rem;
     }
 
-    .about-right {
-      padding-top: 1rem;
-    }
-
-    .about-right p {
-      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-      font-weight: 400;
-      line-height: 1.9;
-      color: var(--text-dark);
-      margin-bottom: 1.5rem;
-    }
-
-    .about-right p + p {
+    .studio-description p.sub-text {
       color: var(--text-muted);
+      font-size: 1rem;
       font-style: italic;
-      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
     }
 
-    .about-divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, var(--glass-border), transparent);
-      margin: 4rem 0;
-    }
-
-    .about-stats {
+    /* ─── LOGO SEPARATOR BLOCK ─── */
+    .branding-divider-block {
+      background: var(--bg-stark);
+      border-top: 1px solid var(--border-clean);
+      border-bottom: 1px solid var(--border-clean);
       display: flex;
-      gap: 3rem;
+      justify-content: center;
+      align-items: center;
+      padding: 8vh 0;
     }
 
-    .stat-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
+    .centered-logo {
+      max-width: 260px;
+      width: 80%;
+      height: auto;
+      filter: grayscale(100%);
+      opacity: 0.85;
     }
 
-    .stat-value {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      color: var(--accent-black);
-      letter-spacing: 0.05em;
-    }
-
-    .stat-label {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    /* ─── SCREENSHOTS ─── */
-    #screenshots {
-      background: var(--bg-white);
-      border-top: 1px solid var(--glass-border);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 12vh 6vw;
-    }
-
-    .screenshots-header {
-      max-width: 1200px;
-      margin: 0 auto 4rem;
-    }
-
-    .screenshots-grid {
-      max-width: 1400px;
+    /* ─── CURRENT PROJECT SECTION ─── */
+    #current-project {
+      max-width: 1300px;
       margin: 0 auto;
+    }
+
+    .project-grid {
       display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      grid-template-rows: auto auto;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 6vw;
+      align-items: start;
+    }
+
+    .project-showcase-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
 
-    .screenshot-item {
+    .gallery-frame {
       position: relative;
       overflow: hidden;
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--border-clean);
+      background: #e0e0e0;
     }
 
-    .screenshot-item:first-child {
-      grid-row: span 2;
+    .gallery-frame.featured {
+      grid-column: span 2;
     }
 
-    .screenshot-item img {
+    .gallery-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: grayscale(100%) contrast(1.1) brightness(0.95);
-      transition: filter 0.5s ease, transform 0.7s ease;
-      aspect-ratio: 16/9;
+      filter: grayscale(100%) contrast(1.05);
+      transition: filter 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      aspect-ratio: 16/10;
     }
 
-    .screenshot-item:first-child img {
-      aspect-ratio: unset;
-      height: 100%;
-      min-height: 400px;
-    }
-
-    .screenshot-item:hover img {
-      filter: grayscale(20%) contrast(1.05) brightness(1);
+    .gallery-frame:hover img {
+      filter: grayscale(30%) contrast(1);
       transform: scale(1.02);
     }
 
-    .screenshot-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 40%);
-      pointer-events: none;
+    .project-details h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      letter-spacing: 0.02em;
+      margin-bottom: 1rem;
     }
 
-    /* ─── CONTACT ─── */
-    #contact {
-      padding: 16vh 6vw 12vh;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6vw;
-      align-items: end;
-    }
-
-    .contact-left h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      line-height: 1.1;
-      color: var(--text-dark);
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-left p {
-      font-size: 1.05rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.8;
-      max-width: 400px;
-    }
-
-    .contact-right {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      align-items: flex-end;
-    }
-
-    .contact-email {
-      font-family: 'Courier Prime', monospace;
-      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-      letter-spacing: 0.1em;
-      color: var(--text-dark);
-      text-decoration: none;
-      border-bottom: 1px solid var(--text-dark);
-      padding-bottom: 0.5rem;
-      transition: color 0.3s, border-color 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-weight: bold;
-    }
-
-    .contact-email::before {
-      content: '→';
-      color: var(--text-muted);
-      transition: transform 0.3s;
-    }
-
-    .contact-email:hover {
-      color: var(--text-muted);
-      border-color: var(--text-muted);
-    }
-
-    .contact-email:hover::before {
-      transform: translateX(6px);
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--bg-white);
-      border-top: 1px solid var(--glass-border);
-      padding: 2.5rem 6vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-copy, .footer-platform {
+    .project-details .meta-tag {
       font-family: 'Courier Prime', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .project-details p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── CONTACT ARCHIVE ─── */
+    #contact {
+      background: var(--bg-stark);
+      border-top: 1px solid var(--border-clean);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: center;
+    }
+
+    .contact-title h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.2;
+    }
+
+    .contact-link-wrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .studio-email {
+      font-family: 'Courier Prime', monospace;
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      letter-spacing: 0.05em;
+      color: var(--text-main);
+      text-decoration: none;
+      border-bottom: 1px solid var(--text-main);
+      padding-bottom: 0.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-weight: bold;
+      transition: opacity 0.2s ease;
+    }
+
+    .studio-email::before {
+      content: '→';
+      color: var(--text-muted);
+      transition: transform 0.25s ease;
+    }
+
+    .studio-email:hover { opacity: 0.6; }
+    .studio-email:hover::before { transform: translateX(8px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border-clean);
+      padding: 3rem 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-base);
+    }
+
+    .footer-string {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
       color: var(--text-muted);
       text-transform: uppercase;
     }
 
-    /* ─── SCROLL REVEAL ─── */
-    .reveal {
+    /* ─── HIGH PERFORMANCE REVEAL ANIMATIONS ─── */
+    .reveal-trigger {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(25px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
     }
 
-    .reveal.visible {
+    .reveal-trigger.active {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      #about {
+    /* ─── RESPONSIVE LAYOUTS ─── */
+    @media (max-width: 900px) {
+      #about, .project-grid, #contact {
         grid-template-columns: 1fr;
-        gap: 3rem;
-        padding: 12vh 6vw;
+        gap: 4rem;
       }
-
-      .logo-display {
-        margin: 2rem auto 0;
-      }
-
-      .screenshots-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .screenshot-item:first-child {
-        grid-row: span 1;
-      }
-
-      #contact {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .contact-right { align-items: flex-start; }
+      .contact-link-wrapper { justify-content: flex-start; }
       .nav-links { display: none; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      footer { flex-direction: column; gap: 1.2rem; text-align: center; }
     }
 
-    /* ─── CUSTOM SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-light); }
-    ::-webkit-scrollbar-thumb { background: #cccccc; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: #bbb; }
     ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-
-    ::selection { background: var(--text-dark); color: var(--bg-white); }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <nav>
     <a href="#" class="nav-logo">Stud Office</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="#current-project">Current Project</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- GREETING HERO (website gif.gif) -->
   <section class="hero">
-    <div class="hero-bg"></div>
+    <video autoplay loop muted playsinline class="hero-video">
+      <source src="hero-video.mp4" type="video/mp4">
+    </video>
     <div class="hero-vignette"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Stud Office &nbsp;/&nbsp; Chapter I</p>
+      <p class="hero-eyebrow">Studio Portal</p>
       <h1 class="hero-title">
-        IIA
-        <span>Aurelian's Retrieval</span>
+        Stud Office
+        <span>Headlining Title // IIA: Aurelian's Retrieval</span>
       </h1>
-      <div class="hero-meta">
-        <span class="hero-badge">Coming 2026</span>
-        <span class="hero-badge">Roblox</span>
-        <div class="hero-line"></div>
-        <span style="font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.15em;color:#cccccc;">Horror / Exploration</span>
+      <div class="hero-footer-meta">
+        <div class="hero-indicator">Interactive Engineering</div>
+        <div class="hero-indicator">Roblox Architecture</div>
       </div>
     </div>
   </section>
 
-  <!-- GAME INFO SECTION -->
   <section id="about">
-    <div class="about-left reveal">
-      <div class="section-label">The Game</div>
-      <h2>Something was<br /><em>left behind.</em></h2>
+    <div class="studio-headline reveal-trigger">
+      <div class="section-header">Overview</div>
+      <h2>Designing architecture for <em>architectural terror.</em></h2>
+    </div>
+    <div class="studio-description reveal-trigger" style="transition-delay: 0.1s;">
+      <p>
+        Stud Office functions as a modern, independent creation house specializing in psychological fidelity, tight asset layout, and clinical atmospheric design.
+      </p>
+      <p class="sub-text">
+        We prioritize uncompromised visual clarity and tension mechanics to elevate platform standards.
+      </p>
+    </div>
+  </section>
+
+  <div class="branding-divider-block">
+    <img src="Stud office logo 3.png" alt="Stud Office Insignia" class="centered-logo" />
+  </div>
+
+  <section id="current-project">
+    <div class="section-header reveal-trigger">Current Project</div>
+    <div class="project-grid">
       
-      <!-- Studio Branding Feature -->
-      <img src="Stud office logo 3.png" alt="Stud Office Brand Logo" class="logo-display" />
-
-      <div class="about-divider"></div>
-      <div class="about-stats">
-        <div class="stat-item">
-          <span class="stat-value">2026</span>
-          <span class="stat-label">Release</span>
+      <div class="project-showcase-gallery reveal-trigger">
+        <div class="gallery-frame featured">
+          <img src="screenshot-2.png" alt="Primary structural view" loading="lazy" />
         </div>
-        <div class="stat-item">
-          <span class="stat-value">Ch. I</span>
-          <span class="stat-label">Chapter One</span>
+        <div class="gallery-frame">
+          <img src="screenshot-1.png" alt="Auxiliary viewpoint" loading="lazy" />
         </div>
-        <div class="stat-item">
-          <span class="stat-value">Free</span>
-          <span class="stat-label">To Play</span>
+        <div class="gallery-frame">
+          <img src="screenshot-3.png" alt="Interior composition" loading="lazy" />
         </div>
       </div>
-    </div>
-    <div class="about-right reveal" style="transition-delay:0.15s">
-      <p>
-        You wake up inside the Aurelian Institute — a sealed facility with no memory of how you got there. The lights are out. Something moves in the corridors above you.
-      </p>
-      <p>
-        A horror and exploration game built on Roblox. Every room hides something. Not everything that waits for you wants to be found.
-      </p>
+
+      <div class="project-details reveal-trigger" style="transition-delay: 0.15s;">
+        <h3>IIA: Aurelian's Retrieval</h3>
+        <span class="meta-tag">In Active Production // Projected 2026</span>
+        <p>
+          Tasked with uncovering items left behind in a sanitized, abandoned compound, users explore a complex environmental ecosystem engineered down to the pixel.
+        </p>
+        <p>
+          Built natively inside the Roblox framework to push asset fidelity, lighting performance, and immersive mechanical audio engineering.
+        </p>
+      </div>
+
     </div>
   </section>
 
-  <!-- SCREENSHOTS SHOWCASE -->
-  <section id="screenshots">
-    <div class="screenshots-header reveal">
-      <div class="section-label">Gallery Archive</div>
-    </div>
-    <div class="screenshots-grid">
-      <div class="screenshot-item reveal">
-        <img src="screenshot-1.png" alt="Rooftop helipad" loading="lazy" />
-        <div class="screenshot-overlay"></div>
-      </div>
-      <div class="screenshot-item reveal" style="transition-delay:0.1s">
-        <img src="screenshot-3.png" alt="Hospital entrance" loading="lazy" />
-        <div class="screenshot-overlay"></div>
-      </div>
-      <div class="screenshot-item reveal" style="transition-delay:0.2s">
-        <img src="screenshot-2.png" alt="Building exterior" loading="lazy" />
-        <div class="screenshot-overlay"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT / ENQUIRIES -->
   <section id="contact">
-    <div class="contact-left reveal">
-      <div class="section-label">Get in Touch</div>
-      <h3>Questions,<br />press, or partnerships.</h3>
-      <p>Stud Office is an independent game development studio. Reach out for any inquiries about IIA or our upcoming projects.</p>
+    <div class="contact-title reveal-trigger">
+      <div class="section-header">Communications</div>
+      <h4>For inquiries, network alignment, or corporate data.</h4>
     </div>
-    <div class="contact-right reveal" style="transition-delay:0.15s">
-      <a href="mailto:contact@studoffice.com" class="contact-email">contact@studoffice.com</a>
+    <div class="contact-link-wrapper reveal-trigger" style="transition-delay: 0.1s;">
+      <a href="mailto:contact@studoffice.com" class="studio-email">contact@studoffice.com</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <span class="footer-copy">© 2026 Stud Office — All rights reserved</span>
-    <span class="footer-platform">Built on Roblox</span>
+    <span class="footer-string">© 2026 Stud Office — Studio Operations</span>
+    <span class="footer-string">All Systems Operational</span>
   </footer>
 
   <script>
-    // Smooth reveal animations on scroll
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
+    const triggers = document.querySelectorAll('.reveal-trigger');
+    const runtimeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          runtimeObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
 
-    revealEls.forEach(el => observer.observe(el));
+    triggers.forEach(t => runtimeObserver.observe(t));
   </script>
 
 </body>
