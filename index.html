@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stud Office — IIA: Aurelian's Retrieval</title>
+  
+  <!-- BROWSER TAB ICON (FAVICON) -->
+  <link rel="icon" type="image/png" href="Stud office logo 3.png" />
+  
   <meta name="description" content="Independent interactive development studio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -149,6 +153,11 @@
     }
 
     /* ─── OVERVIEW (DARK GRADIENT ZONE) ─── */
+    section {
+      padding: 14vh 6vw;
+      position: relative;
+    }
+
     #about {
       background: linear-gradient(to bottom, var(--bg-pitch) 0%, var(--bg-charcoal) 100%);
       border-bottom: 1px solid var(--border-dark);
@@ -394,7 +403,7 @@
   <!-- PURE HERO GREETING BLOCK -->
   <section class="hero">
     <video autoplay loop muted playsinline class="hero-video">
-      <source src="hero-video.mp4" type="video/mp4">
+      <source src="website%20gif.mp4" type="video/mp4">
     </video>
     <div class="hero-vignette"></div>
     <div class="hero-content">
@@ -474,8 +483,19 @@
     <span class="footer-string">All Systems Operational</span>
   </footer>
 
-  <!-- LIGHTWEIGHT INTERSECTION SCRIPT -->
+  <!-- SCRIPT ENGINE (AUTOPLAY ENFORCER + INTERSECTION OBSERVER) -->
   <script>
+    // Enforce instant hardware-accelerated video play
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.querySelector('.hero-video');
+      if (video) {
+        video.play().catch(err => {
+          console.log('Browser blocked autoplay pipeline, awaiting click event.', err);
+        });
+      }
+    });
+
+    // Content reveal logic
     const targets = document.querySelectorAll('.reveal-trigger');
     const scrollObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
