@@ -98,7 +98,7 @@
       min-height: 600px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end; /* DESKTOP: Off to the bottom-left side */
+      justify-content: flex-end; 
       overflow: hidden;
       background: #000;
     }
@@ -376,8 +376,8 @@
       nav {
         padding: 1rem 6vw 1.2rem;
         background: rgba(5, 5, 5, 0.95); 
-        flex-direction: column; 
-        gap: 0.8rem;            
+        flex-direction: column; /* Stack logo over the links on mobile */
+        gap: 0.8rem;            /* Clean vertical gap between logo and links */
         align-items: center;
       }
       .about-grid, .project-grid, .contact-grid {
@@ -392,38 +392,31 @@
         align-items: flex-start;
       }
       
+      /* CRITICAL MOBILE NAV FIX: Restore display and optimize spacing so it fits neatly */
       .nav-links { 
         display: flex; 
         gap: 1.5rem; 
       } 
       .nav-links a {
-        font-size: 0.6rem; 
+        font-size: 0.6rem; /* Slightly smaller size so long words like 'Current Project' fit comfortably */
       }
       
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
       .branding-divider-block { padding: 8vh 0; }
       
-      /* MOBILE HERO CENTERING FIXES */
       .hero {
         min-height: -webkit-fill-available; 
-        justify-content: center; /* Dead center vertically */
-        align-items: center;     /* Dead center horizontally */
       }
       .hero-content {
-        padding: 0 4vw;          /* Clean responsive side margins */
-        text-align: center;      /* Centers text boundaries */
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 0 6vw 8vh; 
       }
       .hero-title {
-        white-space: nowrap; 
-        font-size: clamp(2rem, 11vw, 5.5rem); /* Scaled safely down so it sits as a single word right in the center */
+        white-space: normal; 
       }
     }
 
     @media (max-width: 360px) {
-      .nav-links { gap: 1rem; } 
+      .nav-links { gap: 1rem; } /* Extra safety check for ultra-narrow older phones */
     }
 
     ::-webkit-scrollbar { width: 5px; }
@@ -519,4 +512,31 @@
   </section>
 
   <footer>
-    <span class="footer-string">© 20
+    <span class="footer-string">© 2026 StudOffice — All rights reserved</span>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.querySelector('.hero-video');
+      if (video) {
+        video.play().catch(err => {
+          console.log('Browser delayed autoplay channel.', err);
+        });
+      }
+    });
+
+    const targets = document.querySelectorAll('.reveal-trigger');
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+    targets.forEach(t => scrollObserver.observe(t));
+  </script>
+
+</body>
+</html>
