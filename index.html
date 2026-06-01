@@ -312,32 +312,42 @@
 
     .contact-link-wrapper {
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      gap: 1.8rem;
+      align-items: flex-end;
     }
 
-    .studio-email {
+    .studio-link {
       font-family: 'Courier Prime', monospace;
-      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      font-size: clamp(0.95rem, 1.4vw, 1.2rem);
       letter-spacing: 0.05em;
       color: var(--text-light);
       text-decoration: none;
-      border-bottom: 1px solid var(--text-light);
-      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 0.5rem;
       display: inline-flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
       font-weight: bold;
-      transition: opacity 0.2s ease;
+      transition: border-color 0.25s ease, opacity 0.2s ease;
+      width: fit-content;
     }
 
-    .studio-email::before {
+    .studio-link span {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted-light);
+      font-weight: normal;
+    }
+
+    .studio-link::before {
       content: '→';
       color: var(--text-muted-light);
       transition: transform 0.25s ease;
     }
 
-    .studio-email:hover { opacity: 0.6; }
-    .studio-email:hover::before { transform: translateX(8px); }
+    .studio-link:hover { border-color: var(--text-light); opacity: 0.8; }
+    .studio-link:hover::before { transform: translateX(6px); }
 
     /* ─── FOOTER ─── */
     footer {
@@ -376,7 +386,7 @@
         grid-template-columns: 1fr;
         gap: 4rem;
       }
-      .contact-link-wrapper { justify-content: flex-start; }
+      .contact-link-wrapper { align-items: flex-start; }
       .nav-links { display: none; }
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
       .branding-divider-block { padding: 8vh 0; }
@@ -466,14 +476,21 @@
     </div>
   </section>
 
-  <!-- PITCH BLACK EXIT GRADIENT: CONTACT -->
+  <!-- PITCH BLACK EXIT GRADIENT: CONTACT Terminal -->
   <section id="contact">
     <div class="contact-title reveal-trigger">
       <div class="section-header">Communications</div>
-      <h4>For inquiries, network alignment, or corporate data.</h4>
+      <h4>For inquiries, network alignment, or corporate data nodes.</h4>
     </div>
+    
+    <!-- LINK ENGINE HUB -->
     <div class="contact-link-wrapper reveal-trigger" style="transition-delay: 0.1s;">
-      <a href="mailto:contact@studoffice.com" class="studio-email">contact@studoffice.com</a>
+      <a href="mailto:contact@studoffice.com" class="studio-link">
+        <span>EMAIL //</span> contact@studoffice.com
+      </a>
+      <a href="https://linktr.ee/StudOffice" target="_blank" rel="noopener noreferrer" class="studio-link">
+        <span>DIRECTORY //</span> linktr.ee/StudOffice
+      </a>
     </div>
   </section>
 
