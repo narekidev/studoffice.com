@@ -47,7 +47,7 @@
       background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
       background-size: 100% 4px, 6px 100%;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 10; /* Lowered below nav links to stop blocking mobile views */
       opacity: 0.18;
     }
 
@@ -99,7 +99,7 @@
       min-height: 600px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: flex-end; /* Keeps alignment grounded beautifully */
       overflow: hidden;
       background: #000;
     }
@@ -127,17 +127,19 @@
     .hero-content {
       position: relative;
       z-index: 3;
-      padding: 0 6vw 12vh;
+      padding: 0 6vw 6vh; /* Decreased bottom padding to draw text down from the middle screen */
       max-width: 1000px;
+      width: 100%;
     }
 
     .hero-title {
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
-      font-size: clamp(4.5rem, 11vw, 9.5rem);
+      font-size: clamp(3.2rem, 11vw, 9.5rem); /* Lowered mobile baseline font slightly to prevent layout breaking */
       line-height: 0.85;
       letter-spacing: -0.03em;
       text-transform: none;
+      word-wrap: break-word;
     }
 
     /* ─── OVERVIEW SECTION ─── */
@@ -372,6 +374,10 @@
 
     /* ─── RESPONSIVE QUERIES ─── */
     @media (max-width: 900px) {
+      nav {
+        padding: 1.2rem 6vw;
+        background: rgba(5, 5, 5, 0.85); /* Ensures visibility context over changing hero assets */
+      }
       .about-grid, .project-grid, .contact-grid {
         grid-template-columns: 1fr;
         gap: 4rem;
@@ -383,9 +389,17 @@
       .contact-link-wrapper {
         align-items: flex-start;
       }
-      .nav-links { display: none; }
+      /* Instead of hiding entirely, we keep the logo visible and drop nav items smoothly */
+      .nav-links { display: none; } 
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
       .branding-divider-block { padding: 8vh 0; }
+      
+      .hero {
+        min-height: -webkit-fill-available; /* Safe-zone handling for mobile browser header wrappers */
+      }
+      .hero-content {
+        padding: 0 6vw 8vh; /* Keeps text firmly out of screen center fields on portrait viewports */
+      }
     }
 
     ::-webkit-scrollbar { width: 5px; }
