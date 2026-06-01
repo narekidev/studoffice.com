@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stud Office — Interactive Media & Design</title>
-  <meta name="description" content="Independent interactive development studio specializing in immersive atmospheres." />
+  <title>Stud Office — IIA: Aurelian's Retrieval</title>
+  <meta name="description" content="Independent interactive development studio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet" />
@@ -12,32 +12,38 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg-base: #f3f3f3;       /* Studio light gray matching logo background */
-      --bg-stark: #ffffff;      /* Contrast white */
-      --text-main: #0a0a0a;     /* Deep off-black */
-      --text-muted: #666666;    /* Secondary architectural gray */
-      --border-clean: rgba(0, 0, 0, 0.07);
-      --glass-nav: rgba(243, 243, 243, 0.8);
+      --bg-pitch: #050505;       /* True deep black */
+      --bg-charcoal: #121212;    /* Dark space gray */
+      --bg-light: #f0f0f0;       /* Structured white-gray matching logo */
+      --bg-stark: #ffffff;       /* Solid white surface */
+      --text-light: #ffffff;     /* Stark white text */
+      --text-dark: #0a0a0a;      /* Clean black text */
+      --text-muted-light: #888888;
+      --text-muted-dark: #555555;
+      --border-dark: rgba(255, 255, 255, 0.06);
+      --border-light: rgba(0, 0, 0, 0.08);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg-base);
-      color: var(--text-main);
+      background: var(--bg-pitch);
+      color: var(--text-light);
       font-family: 'Cormorant Garamond', Georgia, serif;
       overflow-x: hidden;
       cursor: default;
     }
 
-    /* Performant vector grain layer overlay */
+    /* Subtle atmospheric scanline overlay */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      background-size: 100% 4px, 6px 100%;
       pointer-events: none;
       z-index: 9999;
+      opacity: 0.4;
     }
 
     /* ─── NAVIGATION ─── */
@@ -49,19 +55,17 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.8rem 6vw;
-      background: var(--glass-nav);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-clean);
-      will-change: transform;
+      background: linear-gradient(to bottom, rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0));
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .nav-logo {
       font-family: 'Courier Prime', monospace;
-      font-size: 0.8rem;
-      letter-spacing: 0.35em;
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--text-main);
+      color: var(--text-light);
       text-decoration: none;
       font-weight: bold;
     }
@@ -77,18 +81,18 @@
       font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--text-muted-light);
       text-decoration: none;
       transition: color 0.25s ease;
     }
 
-    .nav-links a:hover { color: var(--text-main); }
+    .nav-links a:hover { color: var(--text-light); }
 
-    /* ─── STUDIO GREETING HERO ─── */
+    /* ─── HERO GREETING (VIDEO) ─── */
     .hero {
       position: relative;
       height: 100vh;
-      min-height: 650px;
+      min-height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -96,7 +100,6 @@
       background: #000;
     }
 
-    /* HTML5 background video optimization handles lag gracefully */
     .hero-video {
       position: absolute;
       top: 50%; left: 50%;
@@ -105,45 +108,32 @@
       transform: translate(-50%, -50%);
       object-fit: cover;
       z-index: 1;
-      opacity: 0.85;
+      opacity: 0.7;
     }
 
+    /* Heavy vignette gradient masking to create focus */
     .hero-vignette {
       position: absolute;
       inset: 0;
       z-index: 2;
       background: 
-        radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.5) 100%),
-        linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
+        radial-gradient(circle at center, transparent 10%, rgba(5,5,5,0.7) 100%),
+        linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, transparent 20%, var(--bg-pitch) 100%);
     }
 
     .hero-content {
       position: relative;
       z-index: 3;
       padding: 0 6vw 12vh;
-      max-width: 1100px;
-      color: #ffffff;
-    }
-
-    .hero-eyebrow {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: #b0b0b0;
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fade-up-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
+      max-width: 1000px;
     }
 
     .hero-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4.5rem, 11vw, 9.5rem);
+      font-size: clamp(5rem, 12vw, 10rem);
       line-height: 0.85;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
-      opacity: 0;
-      animation: fade-up-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
     }
 
     .hero-title span {
@@ -151,41 +141,21 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-weight: 300;
-      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
-      letter-spacing: 0.1em;
-      color: #e0e0e0;
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      letter-spacing: 0.05em;
+      color: var(--text-muted-light);
       text-transform: none;
-      margin-top: 0.6rem;
+      margin-top: 0.8rem;
     }
 
-    .hero-footer-meta {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      margin-top: 3.5rem;
-      opacity: 0;
-      animation: fade-up-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s;
-    }
-
-    .hero-indicator {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #999999;
-      border-left: 2px solid #ffffff;
-      padding-left: 1rem;
-    }
-
-    @keyframes fade-up-reveal {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── GENERAL ARCHITECTURE ─── */
-    section {
-      padding: 14vh 6vw;
-      position: relative;
+    /* ─── OVERVIEW (DARK GRADIENT ZONE) ─── */
+    #about {
+      background: linear-gradient(to bottom, var(--bg-pitch) 0%, var(--bg-charcoal) 100%);
+      border-bottom: 1px solid var(--border-dark);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 8vw;
+      align-items: start;
     }
 
     .section-header {
@@ -193,79 +163,59 @@
       font-size: 0.68rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--text-main);
-      margin-bottom: 4rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
+      margin-bottom: 3rem;
       font-weight: bold;
     }
 
-    .section-header::after {
-      content: '';
-      width: 50px;
-      height: 1px;
-      background: var(--text-main);
-    }
-
-    /* ─── STUDIO PROFILE / ABOUT ─── */
-    #about {
-      max-width: 1300px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 8vw;
-    }
+    #about .section-header { color: var(--text-muted-light); }
+    #current-project .section-header { color: var(--text-dark); }
 
     .studio-headline h2 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       font-size: clamp(2.5rem, 4.5vw, 4rem);
       line-height: 1.15;
-      color: var(--text-main);
     }
 
     .studio-headline h2 em {
       font-style: italic;
-      color: var(--text-muted);
+      color: var(--text-muted-light);
     }
 
     .studio-description p {
       font-size: clamp(1.1rem, 1.5vw, 1.35rem);
       line-height: 1.85;
-      color: var(--text-main);
+      color: #dddddd;
       margin-bottom: 2rem;
     }
 
     .studio-description p.sub-text {
-      color: var(--text-muted);
+      color: var(--text-muted-light);
       font-size: 1rem;
       font-style: italic;
     }
 
-    /* ─── LOGO SEPARATOR BLOCK ─── */
+    /* ─── LOGO TRANSITION BLOCK (GRADIENT BLEND) ─── */
     .branding-divider-block {
-      background: var(--bg-stark);
-      border-top: 1px solid var(--border-clean);
-      border-bottom: 1px solid var(--border-clean);
+      background: linear-gradient(to bottom, var(--bg-charcoal) 0%, var(--bg-light) 100%);
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 8vh 0;
+      padding: 12vh 0;
+      position: relative;
     }
 
     .centered-logo {
-      max-width: 260px;
-      width: 80%;
+      max-width: 240px;
+      width: 75%;
       height: auto;
-      filter: grayscale(100%);
-      opacity: 0.85;
+      filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.15));
     }
 
-    /* ─── CURRENT PROJECT SECTION ─── */
+    /* ─── CURRENT PROJECT (LIGHT WHITE-GRAY CANVAS) ─── */
     #current-project {
-      max-width: 1300px;
-      margin: 0 auto;
+      background: var(--bg-light);
+      color: var(--text-dark);
     }
 
     .project-grid {
@@ -284,8 +234,8 @@
     .gallery-frame {
       position: relative;
       overflow: hidden;
-      border: 1px solid var(--border-clean);
-      background: #e0e0e0;
+      border: 1px solid var(--border-light);
+      background: #dbdbdb;
     }
 
     .gallery-frame.featured {
@@ -297,13 +247,13 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: grayscale(100%) contrast(1.05);
-      transition: filter 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: grayscale(100%) contrast(1.1);
+      transition: filter 0.4s ease, transform 0.6s ease;
       aspect-ratio: 16/10;
     }
 
     .gallery-frame:hover img {
-      filter: grayscale(30%) contrast(1);
+      filter: grayscale(40%) contrast(1.05);
       transform: scale(1.02);
     }
 
@@ -311,7 +261,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2.5rem, 4vw, 4rem);
       letter-spacing: 0.02em;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .project-details .meta-tag {
@@ -319,7 +269,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--text-muted-dark);
       display: inline-block;
       margin-bottom: 2rem;
     }
@@ -327,25 +277,28 @@
     .project-details p {
       font-size: 1.1rem;
       line-height: 1.8;
-      color: var(--text-muted);
+      color: #333333;
       margin-bottom: 1.5rem;
     }
 
-    /* ─── CONTACT ARCHIVE ─── */
+    /* ─── CONTACT (GRADIENT TO DEEP BLACK) ─── */
     #contact {
-      background: var(--bg-stark);
-      border-top: 1px solid var(--border-clean);
+      background: linear-gradient(to bottom, var(--bg-light) 0%, var(--bg-pitch) 70%);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6vw;
       align-items: center;
+      padding-top: 18vh;
     }
+
+    #contact .section-header { color: var(--text-muted-light); }
 
     .contact-title h4 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       font-size: clamp(2rem, 3.5vw, 3rem);
       line-height: 1.2;
+      color: var(--text-light);
     }
 
     .contact-link-wrapper {
@@ -357,9 +310,9 @@
       font-family: 'Courier Prime', monospace;
       font-size: clamp(1rem, 1.6vw, 1.25rem);
       letter-spacing: 0.05em;
-      color: var(--text-main);
+      color: var(--text-light);
       text-decoration: none;
-      border-bottom: 1px solid var(--text-main);
+      border-bottom: 1px solid var(--text-light);
       padding-bottom: 0.4rem;
       display: inline-flex;
       align-items: center;
@@ -370,7 +323,7 @@
 
     .studio-email::before {
       content: '→';
-      color: var(--text-muted);
+      color: var(--text-muted-light);
       transition: transform 0.25s ease;
     }
 
@@ -379,27 +332,27 @@
 
     /* ─── FOOTER ─── */
     footer {
-      border-top: 1px solid var(--border-clean);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
       padding: 3rem 6vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--bg-base);
+      background: var(--bg-pitch);
     }
 
     .footer-string {
       font-family: 'Courier Prime', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.15em;
-      color: var(--text-muted);
+      color: var(--text-muted-light);
       text-transform: uppercase;
     }
 
-    /* ─── HIGH PERFORMANCE REVEAL ANIMATIONS ─── */
+    /* ─── PERFORMANCE-FRIENDLY TIMED ANIMATIONS ─── */
     .reveal-trigger {
       opacity: 0;
-      transform: translateY(25px);
-      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
       will-change: transform, opacity;
     }
 
@@ -408,7 +361,7 @@
       transform: translateY(0);
     }
 
-    /* ─── RESPONSIVE LAYOUTS ─── */
+    /* ─── RESPONSIVE ARRAYS ─── */
     @media (max-width: 900px) {
       #about, .project-grid, #contact {
         grid-template-columns: 1fr;
@@ -417,16 +370,18 @@
       .contact-link-wrapper { justify-content: flex-start; }
       .nav-links { display: none; }
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
+      .branding-divider-block { padding: 8vh 0; }
     }
 
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: #bbb; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    ::-webkit-scrollbar-track { background: var(--bg-pitch); }
+    ::-webkit-scrollbar-thumb { background: #333333; }
+    ::-webkit-scrollbar-thumb:hover { background: #555555; }
   </style>
 </head>
 <body>
 
+  <!-- MINIMAL TRANSPARENT NAVIGATION -->
   <nav>
     <a href="#" class="nav-logo">Stud Office</a>
     <ul class="nav-links">
@@ -436,24 +391,21 @@
     </ul>
   </nav>
 
+  <!-- PURE HERO GREETING BLOCK -->
   <section class="hero">
     <video autoplay loop muted playsinline class="hero-video">
       <source src="hero-video.mp4" type="video/mp4">
     </video>
     <div class="hero-vignette"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Studio Portal</p>
       <h1 class="hero-title">
         Stud Office
-        <span>Headlining Title // IIA: Aurelian's Retrieval</span>
+        <span>IIA: Aurelian's Retrieval</span>
       </h1>
-      <div class="hero-footer-meta">
-        <div class="hero-indicator">Interactive Engineering</div>
-        <div class="hero-indicator">Roblox Architecture</div>
-      </div>
     </div>
   </section>
 
+  <!-- BACKGROUND GRADIENT TRANSITION ENGINE: ABOUT -->
   <section id="about">
     <div class="studio-headline reveal-trigger">
       <div class="section-header">Overview</div>
@@ -461,7 +413,7 @@
     </div>
     <div class="studio-description reveal-trigger" style="transition-delay: 0.1s;">
       <p>
-        Stud Office functions as a modern, independent creation house specializing in psychological fidelity, tight asset layout, and clinical atmospheric design.
+        Stud Office functions as an independent creation house specializing in psychological fidelity, tight asset layout, and clinical atmospheric design.
       </p>
       <p class="sub-text">
         We prioritize uncompromised visual clarity and tension mechanics to elevate platform standards.
@@ -469,10 +421,12 @@
     </div>
   </section>
 
+  <!-- MID-POINT TRANSITION SEPARATOR -->
   <div class="branding-divider-block">
     <img src="Stud office logo 3.png" alt="Stud Office Insignia" class="centered-logo" />
   </div>
 
+  <!-- WHITE-GRAY BRAND SURFACE: CURRENT PROJECT -->
   <section id="current-project">
     <div class="section-header reveal-trigger">Current Project</div>
     <div class="project-grid">
@@ -489,7 +443,7 @@
         </div>
       </div>
 
-      <div class="project-details reveal-trigger" style="transition-delay: 0.15s;">
+      <div class="project-details reveal-trigger" style="transition-delay: 0.1s;">
         <h3>IIA: Aurelian's Retrieval</h3>
         <span class="meta-tag">In Active Production // Projected 2026</span>
         <p>
@@ -503,6 +457,7 @@
     </div>
   </section>
 
+  <!-- PITCH BLACK EXIT GRADIENT: CONTACT -->
   <section id="contact">
     <div class="contact-title reveal-trigger">
       <div class="section-header">Communications</div>
@@ -513,23 +468,25 @@
     </div>
   </section>
 
+  <!-- OPERATIONS FOOTER -->
   <footer>
     <span class="footer-string">© 2026 Stud Office — Studio Operations</span>
     <span class="footer-string">All Systems Operational</span>
   </footer>
 
+  <!-- LIGHTWEIGHT INTERSECTION SCRIPT -->
   <script>
-    const triggers = document.querySelectorAll('.reveal-trigger');
-    const runtimeObserver = new IntersectionObserver((entries) => {
+    const targets = document.querySelectorAll('.reveal-trigger');
+    const scrollObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          runtimeObserver.unobserve(entry.target);
+          scrollObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
-    triggers.forEach(t => runtimeObserver.observe(t));
+    targets.forEach(t => scrollObserver.observe(t));
   </script>
 
 </body>
