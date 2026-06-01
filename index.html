@@ -134,11 +134,11 @@
     .hero-title {
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
-      font-size: clamp(3.2rem, 10vw, 8.5rem); /* Scaled down max size slightly for absolute safety */
+      font-size: clamp(3.2rem, 10vw, 8.5rem); 
       line-height: 0.85;
       letter-spacing: -0.03em;
       text-transform: none;
-      white-space: nowrap; /* CRITICAL FIX: Stops StudOffice from breaking onto two lines */
+      white-space: nowrap; 
     }
 
     /* ─── OVERVIEW SECTION ─── */
@@ -374,8 +374,11 @@
     /* ─── RESPONSIVE QUERIES ─── */
     @media (max-width: 900px) {
       nav {
-        padding: 1.2rem 6vw;
-        background: rgba(5, 5, 5, 0.85); 
+        padding: 1rem 6vw 1.2rem;
+        background: rgba(5, 5, 5, 0.95); 
+        flex-direction: column; /* Stack logo over the links on mobile */
+        gap: 0.8rem;            /* Clean vertical gap between logo and links */
+        align-items: center;
       }
       .about-grid, .project-grid, .contact-grid {
         grid-template-columns: 1fr;
@@ -388,7 +391,16 @@
       .contact-link-wrapper {
         align-items: flex-start;
       }
-      .nav-links { display: none; } 
+      
+      /* CRITICAL MOBILE NAV FIX: Restore display and optimize spacing so it fits neatly */
+      .nav-links { 
+        display: flex; 
+        gap: 1.5rem; 
+      } 
+      .nav-links a {
+        font-size: 0.6rem; /* Slightly smaller size so long words like 'Current Project' fit comfortably */
+      }
+      
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
       .branding-divider-block { padding: 8vh 0; }
       
@@ -399,8 +411,12 @@
         padding: 0 6vw 8vh; 
       }
       .hero-title {
-        white-space: normal; /* Allows natural wrapping on tiny mobile screens if needed */
+        white-space: normal; 
       }
+    }
+
+    @media (max-width: 360px) {
+      .nav-links { gap: 1rem; } /* Extra safety check for ultra-narrow older phones */
     }
 
     ::-webkit-scrollbar { width: 5px; }
