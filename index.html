@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StudOffice</title>
   
+  <!-- BROWSER TAB ICON (FAVICON) -->
   <link rel="icon" type="image/png" href="Stud office logo 3.png" />
   
   <meta name="description" content="Independent interactive development studio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Courier+Prime:ital@0;1&family=Montserrat:wght@900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -67,7 +68,7 @@
     .nav-logo {
       font-family: 'Courier Prime', monospace;
       font-size: 0.85rem;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.2em;
       color: var(--text-light);
       text-decoration: none;
       font-weight: bold;
@@ -131,10 +132,12 @@
     }
 
     .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 12vw, 10rem);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(4.5rem, 11vw, 9.5rem);
       line-height: 0.85;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.03em;
+      text-transform: none;
     }
 
     /* ─── OVERVIEW SECTION ─── */
@@ -241,7 +244,6 @@
       transform: scale(1.015);
     }
 
-    /* UI Optimization: Text tracking pins comfortably during long image scrolls */
     .project-details {
       position: sticky;
       top: 140px;
@@ -249,9 +251,10 @@
     }
 
     .project-details h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 4vw, 4rem);
-      letter-spacing: 0.02em;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 3.8vw, 3.8rem);
+      letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
 
@@ -266,9 +269,11 @@
       font-weight: bold;
     }
 
+    /* Optimized description boldness and weight thickness */
     .project-details p {
       font-size: 1.2rem;
       line-height: 1.8;
+      font-weight: 600;
       color: #1a1a1a;
       margin-bottom: 1.5rem;
     }
@@ -294,11 +299,12 @@
       color: var(--text-light);
     }
 
+    /* Shifted contact hub properties to align cleanly to the right page margin */
     .contact-link-wrapper {
       display: flex;
       flex-direction: column;
       gap: 1.8rem;
-      align-items: flex-start;
+      align-items: flex-end;
     }
 
     .studio-link {
@@ -374,6 +380,9 @@
         position: relative;
         top: 0;
       }
+      .contact-link-wrapper {
+        align-items: flex-start;
+      }
       .nav-links { display: none; }
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
       .branding-divider-block { padding: 8vh 0; }
@@ -387,6 +396,7 @@
 </head>
 <body>
 
+  <!-- MINIMAL TRANSPARENT NAVIGATION -->
   <nav>
     <a href="#" class="nav-logo">StudOffice</a>
     <ul class="nav-links">
@@ -396,6 +406,7 @@
     </ul>
   </nav>
 
+  <!-- PURE HERO VIDEO ENTRY -->
   <section class="hero">
     <video autoplay loop muted playsinline class="hero-video">
       <source src="website%20gif.mp4" type="video/mp4">
@@ -406,6 +417,7 @@
     </div>
   </section>
 
+  <!-- ABOUT / OVERVIEW -->
   <section id="about">
     <div class="section-header reveal-trigger">Overview</div>
     
@@ -421,14 +433,17 @@
     </div>
   </section>
 
+  <!-- BLENDED DIVISION BANNER -->
   <div class="branding-divider-block">
     <img src="Stud office logo 3.png" alt="StudOffice Insignia" class="centered-logo" />
   </div>
 
+  <!-- CURRENT PROJECT SHOWCASE -->
   <section id="current-project">
     <div class="section-header reveal-trigger">Current Project</div>
     <div class="project-grid">
       
+      <!-- STACKED PORTFOLIO ARCHIVE -->
       <div class="project-showcase-gallery reveal-trigger">
         <div class="gallery-frame">
           <img src="screenshot-2.png" alt="Primary structural view" loading="lazy" />
@@ -441,6 +456,7 @@
         </div>
       </div>
 
+      <!-- STICKY PROJECT NARRATIVE -->
       <div class="project-details reveal-trigger" style="transition-delay: 0.1s;">
         <h3>IIA: Aurelian's Retrieval</h3>
         <span class="meta-tag">In Active Production // Releasing mid-late 2026</span>
@@ -452,6 +468,7 @@
     </div>
   </section>
 
+  <!-- COMMUNICATIONS / NETWORK LINKS -->
   <section id="contact">
     <div class="section-header reveal-trigger">Communications</div>
     
@@ -471,12 +488,13 @@
     </div>
   </section>
 
+  <!-- CONFIDENT CLEAN FOOTER -->
   <footer>
     <span class="footer-string">© 2026 StudOffice — Studio Operations</span>
   </footer>
 
+  <!-- SCRIPT ENGINE -->
   <script>
-    // Enforce instant hardware-accelerated video play pipelines
     document.addEventListener('DOMContentLoaded', () => {
       const video = document.querySelector('.hero-video');
       if (video) {
@@ -486,7 +504,6 @@
       }
     });
 
-    // Content reveal layout observer
     const targets = document.querySelectorAll('.reveal-trigger');
     const scrollObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
