@@ -122,24 +122,6 @@
         linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, transparent 20%, var(--bg-pitch) 100%);
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      padding: 0 6vw 6vh; 
-      max-width: 1000px;
-      width: 100%;
-    }
-
-    .hero-title {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: clamp(3.2rem, 10vw, 8.5rem); 
-      line-height: 0.85;
-      letter-spacing: -0.03em;
-      text-transform: none;
-      white-space: nowrap; 
-    }
-
     /* ─── OVERVIEW SECTION ─── */
     section {
       padding: 14vh 6vw;
@@ -368,7 +350,7 @@
       transform: translateY(0);
     }
 
-    /* ─── CLEAN RESPONSIVE QUERIES (NO HACKS) ─── */
+    /* ─── RESPONSIVE QUERIES ─── */
     @media (max-width: 900px) {
       nav {
         padding: 1.2rem 6vw;
@@ -384,7 +366,7 @@
       }
 
       .nav-links { 
-        gap: 1.5rem; /* Shrinking desktop 3rem gap so links actually fit viewport */
+        gap: 1.5rem;
         padding: 0;
         margin: 0;
       } 
@@ -410,12 +392,6 @@
       
       .hero {
         min-height: -webkit-fill-available; 
-      }
-      .hero-content {
-        padding: 0 6vw 8vh; 
-      }
-      .hero-title {
-        white-space: normal; 
       }
     }
 
@@ -445,9 +421,6 @@
       <source src="website%20gif.mp4" type="video/mp4">
     </video>
     <div class="hero-vignette"></div>
-    <div class="hero-content">
-      <h1 class="hero-title">StudOffice</h1>
-    </div>
   </section>
 
   <section id="about">
