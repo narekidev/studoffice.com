@@ -71,12 +71,14 @@
       color: var(--text-light);
       text-decoration: none;
       font-weight: bold;
+      margin-right: -0.2em; /* FIX: Offsets trailing letter-spacing for pixel-perfect centering */
     }
 
     .nav-links {
       display: flex;
       gap: 3rem;
       list-style: none;
+      margin-right: -0.2em; /* FIX: Offsets trailing letter-spacing for pixel-perfect centering */
     }
 
     .nav-links a {
@@ -396,6 +398,7 @@
       .nav-links { 
         display: flex; 
         gap: 1.5rem; 
+        justify-content: center; /* FIX: Ensures uniform content centering alignment */
       } 
       .nav-links a {
         font-size: 0.6rem; /* Slightly smaller size so long words like 'Current Project' fit comfortably */
