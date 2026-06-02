@@ -38,13 +38,19 @@
       scroll-behavior: smooth; 
     }
 
-    /* FIX: Scroll snapping only activates on screens wider than tablets (desktop layouts) */
+    /* FIX: Robust, smooth scroll snapping for desktop layouts */
     @media (min-width: 901px) {
       html {
-        scroll-snap-type: y proximity;
+        scroll-snap-type: y mandatory;
       }
-      section, .hero {
+      
+      .hero, section {
         scroll-snap-align: start;
+        scroll-snap-stop: normal;
+      }
+
+      .branding-divider-block {
+        scroll-snap-align: none;
       }
     }
 
