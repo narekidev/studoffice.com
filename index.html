@@ -38,22 +38,6 @@
       scroll-behavior: smooth; 
     }
 
-    /* FIX: Robust, smooth scroll snapping for desktop layouts */
-    @media (min-width: 901px) {
-      html {
-        scroll-snap-type: y mandatory;
-      }
-      
-      .hero, section {
-        scroll-snap-align: start;
-        scroll-snap-stop: normal;
-      }
-
-      .branding-divider-block {
-        scroll-snap-align: none;
-      }
-    }
-
     body {
       background: var(--bg-pitch);
       color: var(--text-light);
