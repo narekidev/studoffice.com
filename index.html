@@ -34,10 +34,18 @@
       --border-light: rgba(0, 0, 0, 0.1);
     }
 
-    /* POLISH 1: Smooth scroll snapping for pristine framing */
     html { 
       scroll-behavior: smooth; 
-      scroll-snap-type: y proximity;
+    }
+
+    /* FIX: Scroll snapping only activates on screens wider than tablets (desktop layouts) */
+    @media (min-width: 901px) {
+      html {
+        scroll-snap-type: y proximity;
+      }
+      section, .hero {
+        scroll-snap-align: start;
+      }
     }
 
     body {
@@ -61,7 +69,6 @@
     }
 
     /* ─── NAVIGATION ─── */
-    /* POLISH 2: Added transition property so mobile transitions glide cleanly */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -104,7 +111,6 @@
     .nav-links a:hover { color: var(--text-light); }
 
     /* ─── HERO ZONE ─── */
-    /* POLISH 1: Anchoring section snap alignment */
     .hero {
       position: relative;
       height: 100vh;
@@ -114,7 +120,6 @@
       justify-content: flex-end; 
       overflow: hidden;
       background: #000;
-      scroll-snap-align: start;
     }
 
     .hero-video {
@@ -138,11 +143,9 @@
     }
 
     /* ─── OVERVIEW SECTION ─── */
-    /* POLISH 1: Align sections cleanly on scroll stop */
     section {
       padding: 14vh 6vw;
       position: relative;
-      scroll-snap-align: start;
     }
 
     #about {
@@ -193,13 +196,20 @@
       position: relative;
     }
 
+    /* FIX: Custom Drop shadow and slow-burn hover animation for a heavy branding presence */
     .centered-logo {
       max-width: 240px;
       width: 75%;
       height: auto;
-      mix-blend-mode: multiply;
-      filter: contrast(1.05);
       opacity: 0.95;
+      mix-blend-mode: normal;
+      filter: contrast(1.1) drop-shadow(0 15px 30px rgba(0, 0, 0, 0.65));
+      animation: logo-presence 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes logo-presence {
+      0% { transform: translateY(0) scale(1); filter: contrast(1.1) drop-shadow(0 15px 30px rgba(0, 0, 0, 0.65)); }
+      100% { transform: translateY(-4px) scale(1.02); filter: contrast(1.15) drop-shadow(0 25px 35px rgba(0, 0, 0, 0.8)); }
     }
 
     /* ─── CURRENT PROJECT SECTION ─── */
