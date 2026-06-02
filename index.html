@@ -277,11 +277,23 @@
     }
 
     /* ─── INTEGRATED GAME CTAS ─── */
+    .cta-label {
+      display: block;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted-dark);
+      font-weight: bold;
+      margin-top: 2.5rem;
+      margin-bottom: 0.6rem;
+    }
+
     .project-ctas {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-top: 2.2rem;
+      margin-top: 0; /* Reset layout gap to prevent visual dragging */
     }
 
     .project-btn {
@@ -526,6 +538,7 @@
           In IIA's first chapter, Aurelian's retrieval, you play as Viktor J. Kalen and you are tasked with retrieving a bioweapon sample the opposing faction is developing in the abandoned hospital complex of Aurelian.
         </p>
         
+        <span class="cta-label">Stay Updated //</span>
         <div class="project-ctas">
           <a href="https://discord.com/invite/6zNcEKHgMa" target="_blank" rel="noopener noreferrer" class="project-btn btn-primary">Discord server</a>
           <a href="http://roblox.com/share/g/34888963" target="_blank" rel="noopener noreferrer" class="project-btn btn-secondary">Roblox group</a>
