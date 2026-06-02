@@ -11,7 +11,7 @@
 
   <meta property="og:title" content="StudOffice | Indie Roblox Game Studio" />
   <meta property="og:description" content="Indie Roblox game studio by NarekiDev. Currently developing IIA: Aurelian's Retrieval — releasing mid-late 2026." />
-  <meta property="og:image" content="https://studoffice.com/screenshot-3.png" />
+  <meta property="og:image" content="https://studoffice.com/warehouse-exterior.png" />
   <meta property="og:url" content="https://studoffice.com" />
   <meta property="og:type" content="website" />
 
@@ -34,7 +34,6 @@
       --border-light: rgba(0, 0, 0, 0.1);
     }
 
-    /* POLISH: Radioactive terminal green text selection matching the biweapon lore */
     ::selection {
       background: #00ff66;
       color: #000000;
@@ -80,7 +79,7 @@
       background: linear-gradient(to bottom, rgba(5, 5, 5, 0.95), rgba(5, 5, 5, 0));
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      transition: all 0.4s ease-in-out;
+      transition: background 0.3s ease, padding 0.3s ease;
     }
 
     .nav-logo {
@@ -196,7 +195,6 @@
       position: relative;
     }
 
-    /* FIX: Custom Drop shadow and slow-burn hover animation for a heavy branding presence */
     .centered-logo {
       max-width: 240px;
       width: 75%;
@@ -500,9 +498,7 @@
   </nav>
 
   <section class="hero">
-    <!-- SAFEGUARD: Reuses screenshot-3.png seamlessly as a background poster asset -->
-    <!-- FIX: Updated src path syntax to prevent live server space errors -->
-    <video autoplay loop muted playsinline poster="screenshot-3.png" class="hero-video">
+    <video autoplay loop muted playsinline poster="warehouse-exterior.png" class="hero-video">
       <source src="website-gif.mp4" type="video/mp4">
     </video>
     <div class="hero-vignette"></div>
@@ -533,13 +529,13 @@
       
       <div class="project-showcase-gallery reveal-trigger">
         <div class="gallery-frame">
-          <img src="screenshot-2.png" alt="Primary structural view" loading="lazy" />
+          <img src="parking-pov.png" alt="Parking lot" loading="lazy" />
         </div>
         <div class="gallery-frame">
-          <img src="screenshot-1.png" alt="Auxiliary viewpoint" loading="lazy" />
+          <img src="rooftop.png" alt="Rooftop" loading="lazy" />
         </div>
         <div class="gallery-frame">
-          <img src="screenshot-3.png" alt="Interior composition" loading="lazy" />
+          <img src="warehouse-exterior.png" alt="Warehouse exterior" loading="lazy" />
         </div>
       </div>
 
@@ -553,7 +549,7 @@
         <span class="cta-label">Stay Updated //</span>
         <div class="project-ctas">
           <a href="https://discord.com/invite/6zNcEKHgMa" target="_blank" rel="noopener noreferrer" class="project-btn btn-primary">Discord server</a>
-          <a href="http://roblox.com/share/g/34888963" target="_blank" rel="noopener noreferrer" class="project-btn btn-secondary">Roblox group</a>
+          <a href="https://roblox.com/share/g/34888963" target="_blank" rel="noopener noreferrer" class="project-btn btn-secondary">Roblox group</a>
         </div>
       </div>
 
