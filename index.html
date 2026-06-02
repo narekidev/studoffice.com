@@ -276,6 +276,47 @@
       margin-bottom: 1.5rem;
     }
 
+    /* ─── INTEGRATED GAME CTAS ─── */
+    .project-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.2rem;
+    }
+
+    .project-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 1.8rem;
+      font-weight: bold;
+      transition: all 0.25s ease-in-out;
+    }
+
+    .btn-primary {
+      background: var(--text-dark);
+      color: var(--bg-light);
+      border: 1px solid var(--text-dark);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--text-dark);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-dark);
+      background: rgba(0, 0, 0, 0.04);
+    }
+
     /* ─── CONTACT SECTION ─── */
     #contact {
       background: linear-gradient(to bottom, var(--bg-light) 0%, var(--bg-pitch) 70%);
@@ -400,6 +441,9 @@
         position: relative;
         top: 0;
       }
+      .project-ctas {
+        justify-content: flex-start;
+      }
       .contact-link-wrapper {
         align-items: flex-start;
       }
@@ -481,6 +525,11 @@
         <p>
           In IIA's first chapter, Aurelian's retrieval, you play as Viktor J. Kalen and you are tasked with retrieving a bioweapon sample the opposing faction is developing in the abandoned hospital complex of Aurelian.
         </p>
+        
+        <div class="project-ctas">
+          <a href="https://discord.com/invite/6zNcEKHgMa" target="_blank" rel="noopener noreferrer" class="project-btn btn-primary">Join Discord</a>
+          <a href="http://roblox.com/share/g/34888963" target="_blank" rel="noopener noreferrer" class="project-btn btn-secondary">Roblox Group</a>
+        </div>
       </div>
 
     </div>
