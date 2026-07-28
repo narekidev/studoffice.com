@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e647135bc0d746189a38f5f5576af63b"}'></script><!-- End Cloudflare Web Analytics -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StudOffice | Indie Roblox Game Studio</title>
-  
-  <link rel="icon" type="image/png" href="studoffice-logo.png" />
-  
-  <meta name="description" content="Indie Roblox game studio by NarekiDev. Currently developing IIA: Aurelian's Retrieval — releasing mid-late 2026." />
+  <title>Intuneric | StudOffice — Indie Roblox Horror Game Studio</title>
 
-  <meta property="og:title" content="StudOffice | Indie Roblox Game Studio" />
-  <meta property="og:description" content="Indie Roblox game studio by NarekiDev. Currently developing IIA: Aurelian's Retrieval — releasing mid-late 2026." />
-  <meta property="og:image" content="https://studoffice.com/warehouse-exterior.png" />
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e647135bc0d746189a38f5f5576af63b"}'></script><!-- End Cloudflare Web Analytics -->
+
+  <link rel="icon" type="image/png" href="studoffice-logo.png" />
+  <link rel="canonical" href="https://studoffice.com/" />
+
+  <meta name="description" content="Intuneric is an upcoming Roblox horror game from StudOffice, an indie studio led by NarekiDev. Chapter 1, Aurelian's Retrieval, releases mid-late 2026." />
+
+  <meta property="og:title" content="Intuneric | StudOffice — Indie Roblox Horror Game Studio" />
+  <meta property="og:description" content="Intuneric is an upcoming Roblox horror game from StudOffice, an indie studio led by NarekiDev. Chapter 1, Aurelian's Retrieval, releases mid-late 2026." />
+  <meta property="og:image" content="https://studoffice.com/warehouse-exterior.webp" />
   <meta property="og:url" content="https://studoffice.com" />
   <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Intuneric | StudOffice — Indie Roblox Horror Game Studio" />
+  <meta name="twitter:description" content="Intuneric is an upcoming Roblox horror game from StudOffice, an indie studio led by NarekiDev. Chapter 1, Aurelian's Retrieval, releases mid-late 2026." />
+  <meta name="twitter:image" content="https://studoffice.com/warehouse-exterior.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StudOffice",
+    "url": "https://studoffice.com",
+    "logo": "https://studoffice.com/studoffice-logo.webp",
+    "sameAs": [
+      "https://discord.com/invite/6zNcEKHgMa",
+      "https://roblox.com/share/g/34888963",
+      "https://linktr.ee/StudOffice"
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,7 +48,6 @@
       --bg-pitch: #050505;       
       --bg-charcoal: #121212;    
       --bg-light: #f4f4f4;       
-      --bg-stark: #ffffff;       
       --text-light: #ffffff;     
       --text-dark: #111111;      
       --text-muted-light: #b0b0b0; 
@@ -173,7 +194,7 @@
       align-items: start;
     }
 
-    .studio-headline h2 {
+    .studio-headline h1 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       font-size: clamp(2.5rem, 4.5vw, 4rem);
@@ -258,7 +279,7 @@
       will-change: transform;
     }
 
-    .project-details h3 {
+    .project-details h2 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
       font-size: clamp(2.2rem, 3.8vw, 3.8rem);
@@ -330,7 +351,7 @@
     .btn-secondary {
       background: transparent;
       color: var(--text-dark);
-      border: 1px solid rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-light);
     }
 
     .btn-secondary:hover {
@@ -351,7 +372,7 @@
       align-items: start;
     }
 
-    .contact-title h4 {
+    .contact-title h3 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       font-size: clamp(2rem, 3.5vw, 3rem);
@@ -499,7 +520,7 @@
   </nav>
 
   <section class="hero">
-    <video autoplay loop muted playsinline poster="warehouse-exterior.png" class="hero-video">
+    <video autoplay loop muted playsinline aria-hidden="true" poster="warehouse-exterior.webp" class="hero-video">
       <source src="website-gif.mp4" type="video/mp4">
     </video>
     <div class="hero-vignette"></div>
@@ -510,7 +531,7 @@
     
     <div class="about-grid">
       <div class="studio-headline reveal-trigger" style="transition-delay: 0.05s;">
-        <h2>Indie Roblox game studio</h2>
+        <h1>Indie Roblox game studio</h1>
       </div>
       <div class="studio-description reveal-trigger" style="transition-delay: 0.1s;">
         <p>
@@ -521,7 +542,7 @@
   </section>
 
   <div class="branding-divider-block">
-    <img src="studoffice-logo.png" alt="StudOffice Insignia" class="centered-logo" />
+    <img src="studoffice-logo.webp" alt="StudOffice game studio logo" class="centered-logo" width="240" height="240" />
   </div>
 
   <section id="current-project">
@@ -530,18 +551,18 @@
       
       <div class="project-showcase-gallery reveal-trigger">
         <div class="gallery-frame">
-          <img src="parking-pov.png" alt="Parking lot" loading="lazy" />
+          <img src="parking-pov.webp" alt="Intuneric underground parking garage — Roblox horror game screenshot" loading="lazy" />
         </div>
         <div class="gallery-frame">
-          <img src="rooftop.png" alt="Rooftop" loading="lazy" />
+          <img src="rooftop.webp" alt="Intuneric rooftop helipad — Roblox horror game screenshot" loading="lazy" />
         </div>
         <div class="gallery-frame">
-          <img src="warehouse-exterior.png" alt="Warehouse exterior" loading="lazy" />
+          <img src="warehouse-exterior.webp" alt="Intuneric warehouse exterior at night — Roblox horror game screenshot" loading="lazy" />
         </div>
       </div>
 
       <div class="project-details reveal-trigger" style="transition-delay: 0.1s;">
-        <h3>Intuneric</h3>
+        <h2>Intuneric</h2>
         <span class="meta-tag">In Active Production // Releasing mid-late 2026</span>
         <p>
           In Intuneric's first chapter, Aurelian's retrieval, you play as Viktor J. Kalen and you are tasked with retrieving a bioweapon sample the opposing faction is developing in the abandoned hospital complex of Aurelian.
@@ -562,7 +583,7 @@
     
     <div class="contact-grid">
       <div class="contact-title reveal-trigger">
-        <h4>Business inquiries, and where to find us</h4>
+        <h3>Business inquiries, and where to find us</h3>
       </div>
       
       <div class="contact-link-wrapper reveal-trigger" style="transition-delay: 0.1s;">
