@@ -469,6 +469,8 @@
         gap: 1.5rem;
         padding: 0;
         margin: 0 0 0 14px; 
+        flex-wrap: wrap;
+        justify-content: center;
       } 
       
       .nav-links a {
@@ -478,6 +480,11 @@
       .about-grid, .project-grid, .contact-grid {
         grid-template-columns: 1fr;
         gap: 4rem;
+      }
+
+      .roadmap-phase {
+        gap: 1rem;
+        padding: 1.7rem 0;
       }
       .project-details {
         position: relative;
@@ -506,6 +513,148 @@
     ::-webkit-scrollbar-track { background: var(--bg-pitch); }
     ::-webkit-scrollbar-thumb { background: #333333; }
     ::-webkit-scrollbar-thumb:hover { background: #555555; }
+
+    /* roadmap */
+    #roadmap {
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    #roadmap .section-header { color: var(--text-dark); }
+
+    .roadmap-intro {
+      max-width: 640px;
+      margin-bottom: 4rem;
+    }
+
+    .roadmap-intro h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.25;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .roadmap-intro p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted-dark);
+    }
+
+    .roadmap-list { max-width: 780px; }
+
+    .roadmap-phase {
+      display: flex;
+      gap: 1.6rem;
+      padding: 2.2rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .roadmap-phase:first-child { padding-top: 0; }
+    .roadmap-phase:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .roadmap-num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted-dark);
+      width: 24px;
+      flex-shrink: 0;
+      padding-top: 0.35rem;
+    }
+    .roadmap-phase.is-active .roadmap-num { color: var(--text-dark); font-weight: bold; }
+
+    .roadmap-body { flex: 1; min-width: 0; }
+
+    .roadmap-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .roadmap-phase h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.55rem;
+      color: var(--text-dark);
+    }
+
+    .status-chip {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 0.32rem 0.75rem;
+      border: 1px solid var(--text-dark);
+      white-space: nowrap;
+    }
+    .status-chip.active {
+      background: var(--text-dark);
+      color: var(--bg-light);
+    }
+    .status-chip.queued {
+      background: transparent;
+      color: var(--text-muted-dark);
+      border-color: var(--border-light);
+    }
+
+    .roadmap-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      font-weight: 600;
+      color: var(--text-muted-dark);
+      max-width: 52ch;
+      margin-bottom: 1.1rem;
+    }
+
+    .floor-lights { display: flex; gap: 4px; margin-bottom: 0.75rem; }
+    .fl-seg { flex: 1; height: 4px; background: var(--border-light); }
+    .fl-seg.done { background: var(--text-dark); }
+    .fl-seg.active {
+      background: var(--text-dark);
+      animation: fl-pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes fl-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fl-seg.active { animation: none; opacity: 0.6; }
+    }
+
+    .fl-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 1rem;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #999999;
+    }
+    .fl-legend span.on { color: var(--text-muted-dark); }
+    .fl-legend span.current { color: var(--text-dark); font-weight: bold; }
+
+    .roadmap-meta {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted-dark);
+    }
+
+    .roadmap-updated {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999999;
+      margin-top: 3.5rem;
+    }
   </style>
 </head>
 <body>
@@ -515,6 +664,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#current-project">Current Project</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -578,6 +728,88 @@
     </div>
   </section>
 
+  <section id="roadmap">
+    <div class="section-header reveal-trigger">Roadmap</div>
+
+    <div class="roadmap-intro reveal-trigger" style="transition-delay: 0.05s;">
+      <h2>Chapter I, tracked floor by floor.</h2>
+      <p>Every stage of Aurelian's Retrieval, from first blockout to final polish, in the order it actually gets built.</p>
+    </div>
+
+    <div class="roadmap-list">
+
+      <div class="roadmap-phase is-active reveal-trigger" style="transition-delay: 0.1s;">
+        <div class="roadmap-num">01</div>
+        <div class="roadmap-body">
+          <div class="roadmap-top">
+            <h3>Level Design &amp; Construction</h3>
+            <span class="status-chip active">In Progress</span>
+          </div>
+          <p class="roadmap-desc">Building every zone of the hospital — geometry, lighting, and environmental detail.</p>
+
+          <div class="floor-lights">
+            <div class="fl-seg done" title="Underground — complete"></div>
+            <div class="fl-seg done" title="Parking Lot — complete"></div>
+            <div class="fl-seg done" title="Warehouse — complete"></div>
+            <div class="fl-seg done" title="Lobby — complete"></div>
+            <div class="fl-seg active" title="Security Floor — in progress"></div>
+            <div class="fl-seg" title="HR &amp; Admin — queued"></div>
+            <div class="fl-seg" title="Biolab — queued"></div>
+            <div class="fl-seg done" title="Rooftop — complete"></div>
+          </div>
+          <div class="fl-legend">
+            <span class="on">Underground</span>
+            <span class="on">Parking Lot</span>
+            <span class="on">Warehouse</span>
+            <span class="on">Lobby</span>
+            <span class="current">Security Floor</span>
+            <span>HR &amp; Admin</span>
+            <span>Biolab</span>
+            <span class="on">Rooftop</span>
+          </div>
+
+          <div class="roadmap-meta">5 of 8 zones complete // Security Floor active // 2 queued</div>
+        </div>
+      </div>
+
+      <div class="roadmap-phase reveal-trigger" style="transition-delay: 0.12s;">
+        <div class="roadmap-num">02</div>
+        <div class="roadmap-body">
+          <div class="roadmap-top">
+            <h3>Core Mechanics</h3>
+            <span class="status-chip queued">Queued</span>
+          </div>
+          <p class="roadmap-desc">Gameplay systems and interactions — the mechanics that make each floor playable.</p>
+        </div>
+      </div>
+
+      <div class="roadmap-phase reveal-trigger" style="transition-delay: 0.14s;">
+        <div class="roadmap-num">03</div>
+        <div class="roadmap-body">
+          <div class="roadmap-top">
+            <h3>Cutscenes, GUI &amp; Dialogue</h3>
+            <span class="status-chip queued">Queued</span>
+          </div>
+          <p class="roadmap-desc">Story beats, interface, and the voice of Aurelian's Retrieval.</p>
+        </div>
+      </div>
+
+      <div class="roadmap-phase reveal-trigger" style="transition-delay: 0.16s;">
+        <div class="roadmap-num">04</div>
+        <div class="roadmap-body">
+          <div class="roadmap-top">
+            <h3>Polish &amp; QA</h3>
+            <span class="status-chip queued">Queued</span>
+          </div>
+          <p class="roadmap-desc">Final pass — bugs, balance, performance, and ship-readiness.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="roadmap-updated">Status log updated // 2026.08.10</div>
+  </section>
+
   <section id="contact">
     <div class="section-header reveal-trigger">Contact us</div>
     
@@ -625,4 +857,5 @@
   </script>
 
 </body>
+</html>
 </html>
